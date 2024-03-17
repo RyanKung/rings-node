@@ -267,7 +267,13 @@ mod test {
 
         // node1 notify node3
         let ev3 = node3.listen_once().await.unwrap().0;
-        assert_eq!(ev3.signer(), node1.did(), "expect {:?}, got {:?}", node1.did(), ev3.signer());
+        assert_eq!(
+            ev3.signer(),
+            node1.did(),
+            "expect {:?}, got {:?}",
+            node1.did(),
+            ev3.signer()
+        );
         assert_eq!(ev3.relay.path, vec![node1.did()]);
         assert!(matches!(
             ev3.transaction.data()?,
